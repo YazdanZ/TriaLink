@@ -27,7 +27,7 @@ public class GoogleCloud {
     public HashMap callGCP(String str) {
         try {
             ProcessBuilder pb = new ProcessBuilder("curl","--silent","--location","--request","POST","https://healthcare.googleapis.com/v1/projects/marine-copilot-376117/locations/us-central1/services/nlp:analyzeEntities","--header","Content-Type:application/x-www-form-urlencoded", "--header", "Authorization: Bearer " +
-                    "ya29.c.b0Aaekm1I5IX6GSoGbAw-4Xk-Phj9j3mgNjJUz8vBbUe_9Mm1FJfbYrv3pRy0INgYewJBfDEoElV1YI2u_sj89qbANb8SKOmuFr4_pu4lDPcUvVDj0QTj-UIi1CP59SN6ljffFDvAXI1iUoAJx_rijkyxaH4Vq_v38brj7zDixTANPjVuJSL2Igc-CUbNVXnTzU05TUOOgu89GTUPHkhHSX7pwXEWT8E232Ao0wbo63q8zahtkJ8ek-Bz-x727xfskJbz76uUwVbqVqSRFukkcagiRBzlUZrfkUkm4swclJQ-s0lclcOqqBSB8Xnoud7J33MektUyMmw-tbusUwz49Sia1tnSmVJB5ZFo9rjyeeZxylcpip8OaJSFeUUev3YZwrBpa7qfphBjS5M09Zehry3ZBXVBy4eyq3IgMOpMmSIUR24jgtajMbqfyZS-Fxlow3QRvYB4wdazp3d017OJoasJBMby7qBS31sqz6Jxa0xx6aWs3n2h0Wlm9bzdV_vY9XW--fqRVRnO3X3Zve-3ojmoRwnkOf7l-Xzlti-hacFuwZvUxw7s73c2dcZibx9kQBa6JS9Jsp88of2p4esRnkBfrd4UWl1F9d2RFZR0wMUZUlks-gmg8do9wib0l-gQ47Oc7bz3hVq-3dumkXjt8MdfzyutXS-pV_7twXaw3uwkizIvfV-eXxkanBvWfQjYfodh3r0YzganRViwzmx97wB6e_RSmOevbSsivV5jJbv7i2h1RlZfSVVl3M9lp64l_Mkr60Z24h2u0W2W0OyBrh323m7c3sFO64xBSBbrXc8V-ekB_oxWQF7zrafBW2M539xkv1MpOYYdevR6-8eV9FqSosBto44625pRncaIjVIIOk3lecq5RU-X1t5y_X0SXz6qd6n10I0YnWdWviU2bYtgFZsVM15sBnWa840bRcuqvbvgJIuhps-0irvcMZO7gX9B1xehpmvOila9-XI_gBU-Ix1Mqw_hZuZgdbji3kc81nIzhXVuk9",
+                    "ya29.c.b0Aaekm1IZw9hIicWOPGJM581gzpOFXcDRl3W7unZgZIplOROGfzv9saqj4uboqtWBGiuPDjFWtZSWARXjuv1wK-1eRoSW-m9qHcW7z99d4iH5XYBsFL1CYG0V6H_HwibcKb-AqjrpK6oDHlzbUUHmH7WT8rji0AIQrrA8XO5XJGvlnxAYFiSrdutBQpt9zgOmE1deMnJv0jFiIovVA6YIKI6BgIiSiSYT232DfouqXzpS5ddh9XWBwWdWYpiBBXX93F5ofUv35dvtZ1zuc3BMJ3Yz9BB0V76vb-YcmpVXOcV9M2xF8zqRS2d65t39vbcJBS1XaR7-7YwoStVo0mhrX8rgVtmsWOgV4demhW1Bj7pZ-nobqwiqm44VllkXatndkebqV9gu0Bq03ZeUmgl-bV7RBFRR718uIhaOJ3xtI8xngjIkfBwFBrqXpxY3Fd5M0zZV1mb1_iX9Zyt9Ohln8ccI_lccxzjSFIqvgh8gVOyitZso_m-wdsrfmhBnvzjss3g-9q-YwdmW4971dr3ZMhm7Qu1Us6ndkYm9_V0htVz4VS1e32qsu4bRuzl8o1xi446FFbalO76BBh58Ij83la25dJscBUJvaR8al_bhrt2brUQxUqoM5rkdwiz626gvlxSfc2lppyMYsax4vw3gXxj-YOt8ekM1X_fJBq7khSI4x8scb-1vJ_c_OYjp-SW8Spjl8a1XZloQf99pdSStpVtwq1RwhU6mxyc1SI73_r0M2dSdVbYzawq0m4xZdImc7V0RJapao8I8YWVFW3aB200cVYJIcZBv8h3S3jy1vio8vQrOp9cRRhlh8Uns0IRaS6V0or95R6lpp38W9ell04FZbJF4cBsZg1gQthgZZX098RnkY_Zfs8orWtZk7-phgsIerFdfuWMoy-usOJ66yIhS9mwlU5h05ihwRzeUJr5c_j99OZwMIavJ7mIu9UZM88bX0gMZqas8m0toSRBmevZnZv53cyRMQB7uMJjprid0ZUw3SaY2_a-",
                     "--data-urlencode","documentContent=" + str);
 
 
@@ -60,6 +60,7 @@ public class GoogleCloud {
         try {
             JSONObject json = (JSONObject) parser.parse(sb.toString());
             JSONArray entities = (JSONArray) json.get("entityMentions");
+            //System.out.println(json);
             for(Object obj : entities) {
                 JSONObject jsonObject = (JSONObject) obj;
                 if(!map.containsKey(jsonObject.get("type"))) {
@@ -82,7 +83,7 @@ public class GoogleCloud {
             e.printStackTrace();
         }
 
-//        System.out.println(map);
+        System.out.println(map);
         return map;
     }
 
