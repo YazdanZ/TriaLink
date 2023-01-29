@@ -31,8 +31,8 @@ public class WebController {
         try{
             return new ResponseEntity<>(gcp.callGCP(longString), HttpStatus.OK);
         }catch (Exception e){
-            System.out.println(e.getMessage());
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            System.out.println(e);
+            return new ResponseEntity<>(e, HttpStatus.BAD_REQUEST);
         }
 
     }
