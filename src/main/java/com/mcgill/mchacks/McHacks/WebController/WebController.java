@@ -1,6 +1,11 @@
 package com.mcgill.mchacks.McHacks.WebController;
 
+import com.mcgill.mchacks.McHacks.backend.GoogleCloud;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 public class WebController {
@@ -11,10 +16,17 @@ public class WebController {
         return "Works";
     }
 
-    @RequestMapping(value = "/max/{value1}/{value2}")
-    public String getMax(@PathVariable(name = "value1", required = true) int value1,
-                         @PathVariable(name = "value2", required = true) int value2) {
-        return "The max value of " + String.valueOf(value1) + " and " + String.valueOf(value2) + " is " + String.valueOf(Math.max(value1, value2));
+    @RequestMapping(value = "/{value1}")
+    public String getMax(@PathVariable(name = "value1", required = true) String value1) {
+
+        return value1;
     }
 
+    @PostMapping("/health/")
+    public HashMap example(@RequestBody String longString) {
+        GoogleCloud gcp = new GoogleCloud();
+        HashMap map = gcp.callGCP(longString);
+
+        return map;
+    }
 }
