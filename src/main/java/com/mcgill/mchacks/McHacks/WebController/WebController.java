@@ -22,11 +22,17 @@ public class WebController {
         return value1;
     }
 
-    @PostMapping("/health/")
-    public HashMap example(@RequestBody String longString) {
+    @PostMapping(value = {"/health", "/health/"})
+    public ResponseEntity<?> health(@RequestBody String longString) {
         GoogleCloud gcp = new GoogleCloud();
-        HashMap map = gcp.callGCP(longString);
+        //HashMap map = gcp.callGCP(longString);
 
-        return map;
+        try{
+            return new ResponseEntity<>(gcp.callGCP(longString), HttpStatus.OK);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
     }
 }
