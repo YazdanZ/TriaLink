@@ -22,6 +22,7 @@ public class WebController {
         return value1;
     }
 
+    @CrossOrigin
     @PostMapping(value = {"/health", "/health/"})
     public ResponseEntity<?> health(@RequestBody String longString) {
         GoogleCloud gcp = new GoogleCloud();
